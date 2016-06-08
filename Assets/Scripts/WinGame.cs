@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class WinGame : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class WinGame : MonoBehaviour
 
     void OnMouseDown()
     {
-        Application.LoadLevel (levelAfterVictory);
+        SceneManager.LoadScene (levelAfterVictory);
 	}
 
 }
