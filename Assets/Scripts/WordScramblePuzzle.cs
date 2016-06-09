@@ -14,7 +14,7 @@ public class WordScramblePuzzle : MonoBehaviour
         _letters = new TextMesh[solutionLength];
 
         for (int i = 0; i < solutionLength; i++) {
-            _letters[i] = letterTexts[i].GetComponent("TextMesh") as TextMesh;
+            _letters[i] = letterTexts[i].GetComponent<TextMesh>();
         }
     }
 
@@ -30,6 +30,6 @@ public class WordScramblePuzzle : MonoBehaviour
                 break;
             }
         }
-        if (_solved) Debug.Log ("PUZZLE SOLVED");
+        if (_solved) GameManager.gm.SolvePuzzle ();
     }
 }
