@@ -24,4 +24,9 @@ public class GameManager : NetworkBehaviour
     {
         humptyDumptyPieceOne.SetActive(true);
     }
+
+    public void PickUpPiece ()
+    {
+        Debug.Log ("receive click");
+    }
 }
