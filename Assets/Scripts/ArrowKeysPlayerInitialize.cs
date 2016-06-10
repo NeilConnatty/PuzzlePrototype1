@@ -3,16 +3,23 @@ using UnityEngine.Networking;
 
 public class ArrowKeysPlayerInitialize : NetworkBehaviour
 {
-    private GameObject secondaryCamera;
+    private GameObject _secondaryCamera;
+    private GameObject _playerTwoUI;
+
+    void Awake ()
+    {
+        _secondaryCamera = GameObject.FindWithTag("P2Camera");
+        _playerTwoUI = GameObject.FindWithTag("P2UI");
+    }
 
     void Start ()
     {
         if (isServer) {
-            // find and disable standby camera
-            secondaryCamera = GameObject.Find("StandbyCamera");
-            if (secondaryCamera)
-            {
-                secondaryCamera.SetActive(false);
+            if (_secondaryCamera) {
+                _secondaryCamera.SetActive(false);
+            }
+            if (_playerTwoUI) {
+                _playerTwoUI.GetComponent<Canvas> ().enabled = false;
             }
             if (isLocalPlayer) {
                 ((MonoBehaviour) gameObject.GetComponent("ArrowKeysLooker")).enabled = true;
@@ -24,6 +31,12 @@ public class ArrowKeysPlayerInitialize : NetworkBehaviour
         } else {
             if (isLocalPlayer) {
                 gameObject.SetActive(false);
+                if (_secondaryCamera) {
+                    _secondaryCamera.SetActive(true);
+                }
+                if (_playerTwoUI) {
+                    _playerTwoUI.GetComponent<Canvas> ().enabled = true;
+                }
             }
         }
     }
